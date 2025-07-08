@@ -3,7 +3,7 @@
 A modern, full-stack starter kit built with Next.js 15, Supabase, and Drizzle ORM. Features authentication, profile management, and todo CRUD operations with real-time updates.
 
 ## ✨ Features
-- **Authentication** - Login and Register
+- **Authentication** - Login, Register, and Forgot Password
 - **Todo Management**
 - **Profile Management**
 - **AI Todo Suggestions**
