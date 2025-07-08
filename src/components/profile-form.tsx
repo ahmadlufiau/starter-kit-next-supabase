@@ -7,6 +7,7 @@ import { updateProfile, uploadAvatar, deleteAvatar } from '@/lib/actions';
 import { updatePassword } from '@/lib/auth-client';
 import { Profile } from '@/db/schema';
 import { User, Upload, X, Loader2, Lock, Eye, EyeOff, ChevronDown, ChevronUp } from 'lucide-react';
+import Image from 'next/image';
 
 interface ProfileFormProps {
   userId: string;
@@ -257,9 +258,11 @@ export function ProfileForm({ userId, initialData, userEmail }: ProfileFormProps
             <div className="relative w-16 h-16 rounded-full bg-muted flex items-center justify-center overflow-hidden">
               {avatarUrl ? (
                 <>
-                  <img 
+                  <Image 
                     src={avatarUrl} 
                     alt="Avatar" 
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   {isUploading && (

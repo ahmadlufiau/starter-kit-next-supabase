@@ -65,12 +65,12 @@ export async function deleteTodo(todoId: string) {
 
 // Profile actions
 export async function getProfile(userId: string) {
-  try {
+  try {    
     const profile = await db
       .select()
       .from(profiles)
       .where(eq(profiles.id, userId))
-      .limit(1);
+      .limit(1);    
     return { data: profile[0] };
   } catch (error) {
     console.error('Error fetching profile:', error);

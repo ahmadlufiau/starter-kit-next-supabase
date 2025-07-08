@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth-context';
 import { TodoList } from '@/components/todo-list';
@@ -21,14 +21,7 @@ export function DashboardClient() {
     }
   }, [user, loading, router]);
 
-  // Load todos when user is authenticated
-  useEffect(() => {
-    if (user) {
-      loadTodos();
-    }
-  }, [user]);
-
-  const loadTodos = async () => {
+  const loadTodos = useCallback(async () => {
     if (!user) return;
     
     setTodosLoading(true);
@@ -37,7 +30,14 @@ export function DashboardClient() {
       setTodos(result.data);
     }
     setTodosLoading(false);
-  };
+  }, [user]);
+
+  // Load todos when user is authenticated
+  useEffect(() => {
+    if (user) {
+      loadTodos();
+    }
+  }, [user, loadTodos]);
 
   // Show loading while checking auth status
   if (loading) {
